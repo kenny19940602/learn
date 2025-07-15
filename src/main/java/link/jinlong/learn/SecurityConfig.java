@@ -20,7 +20,9 @@ public class SecurityConfig {
                 http
                                 .authorizeHttpRequests(request -> request
                                                 .requestMatchers("/cashcards/**")
-                                                .hasRole("CARD-OWNER"))
+                                                .hasRole("CARD-OWNER")
+                                                .requestMatchers("/hello/**", "/actuator/**")
+                                                .permitAll())
                                 .httpBasic(Customizer.withDefaults())
                                 .csrf(csrf -> csrf.disable());
                 return http.build();
